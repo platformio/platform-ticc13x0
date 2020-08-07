@@ -40,14 +40,13 @@ env.Append(
     CPPDEFINES=[
         ("ARDUINO", 10805),
         ("ENERGIA", int(FRAMEWORK_VERSION.split(".")[1])),
-        ("printf", "iprintf")
+        ("printf", "iprintf"),
+        ("DEVICE_FAMILY", "cc13x0")
     ],
 
     CCFLAGS=[
-        "-mfloat-abi=hard",
-        "-mfpu=fpv4-sp-d16",
-        "-mabi=aapcs",
-        "--param", "max-inline-insns-single=500"
+        "-mfloat-abi=soft",
+        "-mabi=aapcs"
     ],
 
     LINKFLAGS=[
@@ -58,9 +57,7 @@ env.Append(
         "-Wl,--unresolved-symbols=report-all",
         "-Wl,--warn-common",
         "-Wl,--warn-section-align",
-        "-mfloat-abi=hard",
-        "-mfpu=fpv4-sp-d16",
-        "-fsingle-precision-constant"
+        "-mfloat-abi=soft"
     ],
 
     LIBS=["libdriverlib"],
