@@ -41,7 +41,12 @@ env.Append(
         ("ARDUINO", 10805),
         ("ENERGIA", int(FRAMEWORK_VERSION.split(".")[1])),
         ("printf", "iprintf"),
-        ("DEVICE_FAMILY", "cc13x0")
+        ("DEVICE_FAMILY", "cc13x0"),
+        ("xdc_target_types__", "gnu/targets/arm/std.h"),
+        ("xdc_target_name__", "M3"),
+        ("xdc_cfg__xheader__", "configPkg/package/cfg/energia_pm3g.h"),
+        ("xdc__nolocalstring", "1"),
+        ("CORE_VERSION", "491")
     ],
 
     CCFLAGS=[
@@ -50,30 +55,31 @@ env.Append(
     ],
 
     LINKFLAGS=[
-        "-Wl,--entry=ResetISR",
-        # "-Wl,--cref",
+        "-Wl,-u,main",
         "-Wl,--check-sections",
         "-Wl,--gc-sections",
-        "-Wl,--unresolved-symbols=report-all",
-        "-Wl,--warn-common",
-        "-Wl,--warn-section-align",
-        "-mfloat-abi=soft"
+        join(FRAMEWORK_DIR, "system", "source", "ti", "devices", "cc13x0", "driverlib", "bin", "gcc", "driverlib.lib")
     ],
 
-    LIBS=["libdriverlib"],
+    LIBS=[],
 
     CPPPATH=[
-        join(FRAMEWORK_DIR, "system"),
-        join(FRAMEWORK_DIR, "system", "inc"),
-        join(FRAMEWORK_DIR, "system", "driverlib"),
+        join(FRAMEWORK_DIR, "system", "energia"),
+        join(FRAMEWORK_DIR, "system", "source"),
+        join(FRAMEWORK_DIR, "system", "source", "ti", "devices", "cc13x0"),
+        join(FRAMEWORK_DIR, "system", "source", "ti", "devices", "cc13x0", "inc"),
+        join(FRAMEWORK_DIR, "system", "source", "ti", "devices", "cc13x0", "driverlib"),
+        join(FRAMEWORK_DIR, "system", "kernel", "tirtos", "packages", "ti", "sysbios", "posix"),
+        join(FRAMEWORK_DIR, "system", "kernel", "tirtos", "packages"),
         join(FRAMEWORK_DIR, "cores", env.BoardConfig().get("build.core")),
+        join(FRAMEWORK_DIR, "cores", env.BoardConfig().get("build.core"), "ti", "runtime", "wiring"),
+        join(FRAMEWORK_DIR, "cores", env.BoardConfig().get("build.core"), "ti", "runtime", "wiring", "cc13xx"),
         join(FRAMEWORK_DIR, "variants", env.BoardConfig().get("build.variant"))
     ],
 
     LIBPATH=[
-        join(FRAMEWORK_DIR, "variants",
-             env.BoardConfig().get("build.variant")),
-        join(FRAMEWORK_DIR, "system", "driverlib")
+        join(FRAMEWORK_DIR, "variants", env.BoardConfig().get("build.variant")),
+        join(FRAMEWORK_DIR, "system", "source", "ti", "devices", "cc13x0", "driverlib"),
     ],
 
 

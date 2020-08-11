@@ -85,7 +85,7 @@ env.Append(
         "-nostdlib"
     ],
 
-    LIBS=["c", "gcc", "m"],
+    LIBS=["stdc++", "c", "gcc", "m", "nosys"],
 
     BUILDERS=dict(
         ElfToBin=Builder(

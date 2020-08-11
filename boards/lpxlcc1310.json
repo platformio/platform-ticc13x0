@@ -1,11 +1,11 @@
 {
   "build": {
     "arduino":{
-      "ldscript": "cc1310.ld"
+      "ldscript": "CC1310.ld"
     },
     "core": "cc13xx",
     "cpu": "cortex-m3",
-    "extra_flags": "-DENERGIA_ARCH_CC13XX -DENERGIA_EK_CC1310XL",
+    "extra_flags": "-DENERGIA_ARCH_CC13XX -DENERGIA_CC1310_LAUNCHXL -DBOARD_CC1310_LAUNCHXL",
     "f_cpu": "48000000L",
     "mcu": "cc1310f128",
     "variant": "LAUNCHXL_CC1310"
