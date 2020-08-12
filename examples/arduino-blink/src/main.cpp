@@ -17,16 +17,16 @@
 /* Board Support Header files (from configuration closure) */
 #include <ti/runtime/wiring/Energia.h>
 
-/* magic insertion point 769d20fcd7a0eedaf64270f591438b01 */
-extern void setupBlink();
-extern void loopBlink();
+/* magic insertion point */
+extern void setup();
+extern void loop();
 
 #define NUM_SKETCHES 1
 void (*func_ptr[NUM_SKETCHES][2])(void) = {
-	{setupBlink, loopBlink}
+	{setup, loop}
 };
 const char *taskNames[] = {
-	"loopBlink"
+	"loop"
 };
 
 Void the_task(UArg _task_setup, UArg _task_loop);

@@ -1,8 +1,5 @@
 {
   "build": {
-    "arduino":{
-      "ldscript": "CC1310.ld"
-    },
     "core": "cc13xx",
     "cpu": "cortex-m3",
     "extra_flags": "-DENERGIA_ARCH_CC13XX -DENERGIA_CC1310_LAUNCHXL -DBOARD_CC1310_LAUNCHXL",

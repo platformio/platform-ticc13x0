@@ -71,7 +71,7 @@ env.Append(
         "-fno-rtti",
         "-fno-exceptions",
         "-fno-threadsafe-statics",
-        "-std=gnu++11"
+        "-std=gnu++11",
     ],
 
     CPPDEFINES=[
@@ -85,7 +85,7 @@ env.Append(
         "-nostdlib"
     ],
 
-    LIBS=["stdc++", "c", "gcc", "m", "nosys"],
+    LIBS=["stdc++", "gcc", "c", "m", "nosys"],
 
     BUILDERS=dict(
         ElfToBin=Builder(
