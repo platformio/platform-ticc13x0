@@ -163,7 +163,7 @@ AlwaysBuild(target_size)
 openocd_args = [
     "-d%d" % (2 if int(ARGUMENTS.get("PIOVERBOSE", 0)) else 1)
 ]
-openocd_args.extend(board.get("debug.tools.ti-icdi.server.arguments", []))
+openocd_args.extend(board.get("debug.tools.ti-xds110.server.arguments", []))
 openocd_args.extend([
     "-c", "program {$SOURCE} %s verify reset; shutdown;" %
     board.get("upload.offset_address", "")

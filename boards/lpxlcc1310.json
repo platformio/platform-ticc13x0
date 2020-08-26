@@ -10,12 +10,12 @@
   "debug": {
     "svd_path": "cc1310f128.svd",
     "tools": {
-      "ti-icdi": {
+      "ti-xds110": {
         "onboard": true,
         "server": {
           "arguments": [
             "-s", "$PACKAGE_DIR/scripts",
-            "-f", "board/ek-cc1310.cfg"
+            "-f", "board/ti_cc13x0_launchpad.cfg"
           ],
           "executable": "bin/openocd",
           "package": "tool-openocd"
