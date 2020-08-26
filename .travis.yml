@@ -7,7 +7,7 @@ env:
   - PLATFORMIO_PROJECT_DIR=examples/arduino-blink
 
 install:
-  - pip install -U https://github.com/platformio/platformio/archive/develop.zip
+  - pip install -U https://github.com/platformio/platformio-core/archive/v4.3.4.zip
   - platformio platform install file://.
 
 script:
