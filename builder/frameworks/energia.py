@@ -41,12 +41,12 @@ env.Append(
         ("ARDUINO", 10811),
         ("ENERGIA", 10811),
         ("printf", "iprintf"),
-        ("DEVICE_FAMILY", "cc13x0"),
+        ("DeviceFamily_CC13X0"),
         ("xdc_target_types__", "gnu/targets/arm/std.h"),
         ("xdc_target_name__", "M3"),
         ("xdc_cfg__header__", "configPkg/package/cfg/energia_pm3g.h"),
         ("xdc__nolocalstring", "1"),
-        ("CORE_VERSION", "491")
+        ("CORE_VERSION", "5200")
     ],
 
     CCFLAGS=[
@@ -81,7 +81,7 @@ env.Append(
         join(FRAMEWORK_DIR, "system", "source"),
         join(FRAMEWORK_DIR, "system", "kernel"),
         join(FRAMEWORK_DIR, "system", "kernel", "tirtos", "packages", "gnu", "targets", "arm", "libs", 
-                            "install-native", "arm-none-eabi", "lib", "armv7-m"),
+                            "install-native", "arm-none-eabi", "lib", "thumb", "v7-m"),
         join(FRAMEWORK_DIR, "system", "kernel", "tirtos", "packages"),
         join(FRAMEWORK_DIR, "system", "kernel", "tirtos", "builds", env.BoardConfig().get("build.variant"), "energia"),
         join(FRAMEWORK_DIR, "system", "source", "ti", "devices", "cc13x0", "driverlib"),

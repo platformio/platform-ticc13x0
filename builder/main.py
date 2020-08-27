@@ -59,8 +59,8 @@ env.Append(
         "-ffunction-sections",  # place each function in its own section
         "-fdata-sections",
         "-Wall",
-        "-mthumb",
-        "-nostdlib"
+        "-march=armv7-m",
+        "-mthumb"
     ],
 
     CFLAGS=[
@@ -80,9 +80,12 @@ env.Append(
 
     LINKFLAGS=[
         "-Os",
+        "-march=armv7-m",
         "-mthumb",
         "-nostartfiles",
-        "-nostdlib"
+        "-specs=nano.specs",
+        "-specs=rdimon.specs",
+        "-specs=nosys.specs"
     ],
 
     LIBS=["stdc++", "gcc", "c", "m", "nosys"],
