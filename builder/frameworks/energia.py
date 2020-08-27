@@ -40,7 +40,6 @@ env.Append(
     CPPDEFINES=[
         ("ARDUINO", 10811),
         ("ENERGIA", 10811),
-        ("printf", "iprintf"),
         ("DeviceFamily_CC13X0"),
         ("xdc_target_types__", "gnu/targets/arm/std.h"),
         ("xdc_target_name__", "M3"),
