@@ -55,7 +55,8 @@ env.Append(
     ASFLAGS=["-x", "assembler-with-cpp"],
 
     CCFLAGS=[
-        "-Os",  # optimize for size
+        "-O0",
+        "-g",
         "-ffunction-sections",  # place each function in its own section
         "-fdata-sections",
         "-Wall",
@@ -79,7 +80,7 @@ env.Append(
     ],
 
     LINKFLAGS=[
-        "-Os",
+        "-O0",
         "-march=armv7-m",
         "-mthumb",
         "-nostartfiles",
