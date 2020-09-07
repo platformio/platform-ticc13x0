@@ -182,7 +182,9 @@ env.Replace(
     UPLOADERFLAGS=openocd_args,
     UPLOADCMD="$UPLOADER $UPLOADERFLAGS")
 
-target_upload = env.Alias("upload", target_firm,
+#target_upload = env.Alias("upload", target_firm,
+#                          env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE"))
+target_upload = env.Alias("upload", target_elf,
                           env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE"))
 AlwaysBuild(target_upload)
 
