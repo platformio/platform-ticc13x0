@@ -8,6 +8,7 @@ env:
 
 install:
   - pip install -U https://github.com/platformio/platformio-core/archive/master.zip
+  - platformio --version
   - platformio platform install file://.
   - wget https://github.com/nanosonde/platformio-packages/raw/master/cc13xx-core-5.20.0.tar.gz
   - mkdir -p ~/.platformio/packages/framework-energiaticc13x0
