@@ -10,9 +10,10 @@ install:
   - pip install -U https://github.com/platformio/platformio-core/archive/master.zip
   - platformio --version
   - platformio platform install file://.
-  - wget https://github.com/nanosonde/platformio-packages/raw/master/cc13xx-core-5.20.0.tar.gz
+  - wget https://downloads.ti.com/ccs/esd/tirex/zips/energia_cc13xx_5.20.0/energia_cc13xx_5.20.0__linux.zip
   - mkdir -p ~/.platformio/packages/framework-energiaticc13x0
-  - tar xfzv cc13xx-core-5.20.0.tar.gz -C ~/.platformio/packages/framework-energiaticc13x0
+  - unzip energia_cc13xx_5.20.0__linux.zip -d ~/.platformio/packages/framework-energiaticc13x0
+  - ls -lh ~/.platformio/packages/framework-energiaticc13x0
 
 script:
   - platformio run -v -d $PLATFORMIO_PROJECT_DIR
