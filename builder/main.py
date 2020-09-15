@@ -164,29 +164,69 @@ AlwaysBuild(target_size)
 # Target: Upload firmware
 #
 
-openocd_args = [
-    "-d%d" % (2 if int(ARGUMENTS.get("PIOVERBOSE", 0)) else 1)
-]
-openocd_args.extend(board.get("debug.tools.ti-xds110.server.arguments", []))
-openocd_args.extend([
-    "-c", "program {$SOURCE} %s verify reset; shutdown;" %
-    board.get("upload.offset_address", "")
-])
-openocd_args = [
-    f.replace("$PACKAGE_DIR",
-              platform.get_package_dir("tool-openocd") or "")
-    for f in openocd_args
-]
-env.Replace(
-    UPLOADER="openocd",
-    UPLOADERFLAGS=openocd_args,
-    UPLOADCMD="$UPLOADER $UPLOADERFLAGS")
+if upload_protocol.startswith("jlink"):
 
-#target_upload = env.Alias("upload", target_firm,
-#                          env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE"))
-target_upload = env.Alias("upload", target_elf,
-                          env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE"))
-AlwaysBuild(target_upload)
+    def _jlink_cmd_script(env, source):
+        build_dir = env.subst("$BUILD_DIR")
+        if not isdir(build_dir):
+            makedirs(build_dir)
+        script_path = join(build_dir, "upload.jlink")
+        commands = [
+            "h",
+            "loadbin %s, %s" % (source, env.BoardConfig().get(
+                "upload.offset_address", "0x0")),
+            "r",
+            "q"
+        ]
+        with open(script_path, "w") as fp:
+            fp.write("\n".join(commands))
+        return script_path
+
+    env.Replace(
+        __jlink_cmd_script=_jlink_cmd_script,
+        UPLOADER="JLink.exe" if system() == "Windows" else "JLinkExe",
+        UPLOADERFLAGS=[
+            "-device", env.BoardConfig().get("debug", {}).get("jlink_device"),
+            "-speed", "4000",
+            "-if", ("jtag" if upload_protocol == "jlink-jtag" else "swd"),
+            "-autoconnect", "1"
+        ],
+        UPLOADCMD='$UPLOADER $UPLOADERFLAGS -CommanderScript "${__jlink_cmd_script(__env__, SOURCE)}"'
+    )
+    upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
+
+elif upload_protocol in debug_tools:
+
+	openocd_args = [
+	    "-d%d" % (2 if int(ARGUMENTS.get("PIOVERBOSE", 0)) else 1)
+	]
+	#openocd_args.extend(board.get("debug.tools.ti-xds110.server.arguments", []))
+	openocd_args.extend(
+		debug_tools.get(upload_protocol).get("server").get("arguments", []))
+	openocd_args.extend([
+	    "-c", "program {$SOURCE} %s verify reset; shutdown;" %
+	    board.get("upload.offset_address", "")
+	])
+	openocd_args = [
+	    f.replace("$PACKAGE_DIR",
+	              platform.get_package_dir("tool-openocd") or "")
+	    for f in openocd_args
+	]
+	env.Replace(
+	    UPLOADER="openocd",
+	    UPLOADERFLAGS=openocd_args,
+	    UPLOADCMD="$UPLOADER $UPLOADERFLAGS")
+
+	upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
+
+# custom upload tool
+elif upload_protocol == "custom":
+    upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
+
+else:
+    sys.stderr.write("Warning! Unknown upload protocol %s\n" % upload_protocol)
+
+AlwaysBuild(env.Alias("upload", target_firm, upload_actions))
 
 #
 # Target: Default targets
