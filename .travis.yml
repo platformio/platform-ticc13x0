@@ -12,9 +12,9 @@ install:
   - wget https://downloads.ti.com/ccs/esd/tirex/zips/energia_cc13xx_5.20.0/energia_cc13xx_5.20.0__linux.zip
   - mkdir -p ~/.platformio/packages
   - unzip energia_cc13xx_5.20.0__linux.zip -d ~/.platformio/packages/
-  - mv ~/.platformio/packages/energia_cc13xx_5.20.0 ~/.platformio/packages/framework-energiaticc13x0
-  - cp ./misc/framework-energia-ticc13x0/package.json ~/.platformio/packages/framework-energiaticc13x0
-  - ls -lh ~/.platformio/packages/framework-energiaticc13x0
+  - mv ~/.platformio/packages/energia_cc13xx_5.20.0 ~/.platformio/packages/framework-energia-ticc13x0
+  - cp ./misc/framework-energia-ticc13x0/package.json ~/.platformio/packages/framework-energia-ticc13x0
+  - ls -lh ~/.platformio/packages/framework-energia-ticc13x0
   - platformio platform install file://.
 
 script:

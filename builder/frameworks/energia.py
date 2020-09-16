@@ -31,8 +31,8 @@ from SCons.Script import DefaultEnvironment
 env = DefaultEnvironment()
 platform = env.PioPlatform()
 
-FRAMEWORK_DIR = platform.get_package_dir("framework-energiaticc13x0")
-FRAMEWORK_VERSION = platform.get_package_version("framework-energiaticc13x0")
+FRAMEWORK_DIR = platform.get_package_dir("framework-energia-ticc13x0")
+FRAMEWORK_VERSION = platform.get_package_version("framework-energia-ticc13x0")
 assert isdir(FRAMEWORK_DIR)
 
 

@@ -18,6 +18,7 @@
 """
 
 import sys
+from platform import system
 from os.path import join
 
 from SCons.Script import (ARGUMENTS, COMMAND_LINE_TARGETS, AlwaysBuild,
@@ -26,6 +27,7 @@ from SCons.Script import (ARGUMENTS, COMMAND_LINE_TARGETS, AlwaysBuild,
 env = DefaultEnvironment()
 platform = env.PioPlatform()
 board = env.BoardConfig()
+upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 
 env.Replace(
     AR="arm-none-eabi-ar",
@@ -163,6 +165,9 @@ AlwaysBuild(target_size)
 #
 # Target: Upload firmware
 #
+
+debug_tools = board.get("debug.tools", {})
+upload_actions = []
 
 if upload_protocol.startswith("jlink"):
 

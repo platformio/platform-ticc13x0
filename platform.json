@@ -27,7 +27,7 @@
   "version": "0.1.0",
   "frameworks": {
     "arduino": {
-      "package": "framework-energiaticc13x0",
+      "package": "framework-energia-ticc13x0",
       "script": "builder/frameworks/energia.py"
     }
   },
@@ -36,7 +36,7 @@
       "type": "toolchain",
       "version": ">=1.60301.0,<1.60400.0"
     },
-    "framework-energiaticc13x0": {
+    "framework-energia-ticc13x0": {
       "type": "framework",
       "optional": true,
       "version": "~1.0.5200"

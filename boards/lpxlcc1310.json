@@ -10,33 +10,11 @@
   "debug": {
     "svd_path": "cc1310f128.svd",
     "jlink_device": "CC1310F128",
-    "tools": {
-      "ti-xds110": {
-        "onboard": true,
-        "server": {
-          "arguments": [
-            "-s", "$PACKAGE_DIR/scripts",
-            "-f", "board/ti_cc13x0_launchpad.cfg"
-          ],
-          "executable": "bin/openocd",
-          "package": "tool-openocd"
-        }
-      },
-      "jlink": {
-        "onboard": false,
-        "server": {
-          "arguments": [
-            "-singlerun",
-            "-if", "JTAG",
-            "-select", "USB",
-            "-device", "CC1310F128",
-            "-port", "2331"
-          ],
-          "executable": "JLinkGDBServer",
-          "package": "tool-jlink"
-        }
-      }
-    }
+    "openocd_chipname": "cc1310f128",
+    "openocd_target": "ti_cc13x0_launchpad",
+    "onboard_tools": [
+      "xds110"
+    ]
   },
   "frameworks": [
     "arduino"
@@ -44,7 +22,12 @@
   "name": "TI LaunchPadXL (SimpleLink) w/ CC1310 (48MHz)",
   "upload": {
     "maximum_ram_size": 20480,
-    "maximum_size": 131072
+    "maximum_size": 131072,
+    "protocol": "xds110",
+    "protocols": [
+      "jlink",
+      "xds110"
+    ]
   },
   "url": "https://www.ti.com/store/ti/en/p/product/?p=LAUNCHXL-CC1310",
   "vendor": "TI"
