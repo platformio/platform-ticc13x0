@@ -193,7 +193,7 @@ if upload_protocol.startswith("jlink"):
         UPLOADERFLAGS=[
             "-device", env.BoardConfig().get("debug", {}).get("jlink_device"),
             "-speed", "4000",
-            "-if", ("jtag" if upload_protocol == "jlink-jtag" else "swd"),
+            "-if", ("jtag" if upload_protocol == "jlink" else "cjtag"),
             "-autoconnect", "1"
         ],
         UPLOADCMD='$UPLOADER $UPLOADERFLAGS -CommanderScript "${__jlink_cmd_script(__env__, SOURCE)}"'
