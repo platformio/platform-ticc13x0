@@ -200,6 +200,14 @@ if upload_protocol.startswith("jlink"):
     )
     upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
 
+elif upload_protocol.startswith("cc2538-bsl"):
+    env.Replace(
+	UPLOADER=join(platform.get_package_dir("tool-cc2538bslpy") or "", "cc2538-bsl.py"),
+        UPLOADERFLAGS=["-e", "-w", "-v", "{$SOURCE}"],
+        UPLOADERCMD='"$UPLOADER" $UPLOADERFLAGS')
+
+    upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
+
 elif upload_protocol in debug_tools:
 
 	openocd_args = [

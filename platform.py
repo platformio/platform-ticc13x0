@@ -31,8 +31,8 @@ class Ticc13x0Platform(PlatformBase):
         upload_tool = "tool-openocd"
         if upload_protocol == "jlink":
             upload_tool = "tool-jlink"
-        elif upload_protocol == "dslite":
-            upload_tool = "tool-dslite"
+        elif upload_protocol == "cc2538-bsl":
+            upload_tool = "tool-cc2538bslpy"
 
         if upload_tool:
             for name, opts in self.packages.items():
