@@ -56,7 +56,7 @@
       "type": "uploader",
       "optional": true,
       "owner": "platformio",
-      "version": "^1.0.8001202"
+      "version": "^1.80200.1400"
     }
   }
 }

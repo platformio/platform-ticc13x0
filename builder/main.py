@@ -202,8 +202,11 @@ if upload_protocol.startswith("jlink"):
 
 elif upload_protocol.startswith("dslite"):
     env.Replace(
-	UPLOADER=join(platform.get_package_dir("tool-dslite") or "", "DSLite", "DebugServer", "bin", "DSLite.exe" if system() == "Windows" else "DSLite"),
-        UPLOADERFLAGS=["load", "-c", join("DSLite", env.BoardConfig().get("build.variant"), ".ccxml"), "-f", "{$SOURCE}"],
+        UPLOADERNAME="DSLite.exe" if system() == "Windows" else "DSLite",
+        #UPLOADERPATH=platform.get_package_dir("tool-dslite"),
+	    UPLOADER=join("$UPLOADERPATH", "DSLite", "DebugServer", "bin", "$UPLOADERNAME"),
+        UPLOADERCFG=join("DSLite", env.BoardConfig().get("build.variant"), ".ccxml"),
+        UPLOADERFLAGS=["load", "-c", "$UPLOADERCFG", "-f", "{$SOURCE}"],
         UPLOADERCMD='"$UPLOADER" $UPLOADERFLAGS')
 
     upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
