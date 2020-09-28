@@ -101,12 +101,16 @@ class Ticc13x0Platform(PlatformBase):
             else:
                 openocd_chipname = debug.get("openocd_chipname")
                 assert openocd_chipname
-                openocd_cmds = ["set CHIPNAME %s" % openocd_chipname]
+                openocd_cmds = ["set CHIPNAME %s" % openocd_chipname,
+                                "transport select jtag",
+                                "adapter speed 5500"
+                ]
                 server_args = [
                     "-s", "$PACKAGE_DIR/scripts",
                     "-f", "interface/%s.cfg" % (link),
                     "-c", "; ".join(openocd_cmds),
-                    "-f", "target/%s.cfg" % debug.get("openocd_target")
+                    "-f", "target/%s.cfg" % debug.get("openocd_target"),
+                    "-c", "cortex_m reset_config sysresetreq"
                 ]
                 debug['tools'][link] = {
                     "server": {

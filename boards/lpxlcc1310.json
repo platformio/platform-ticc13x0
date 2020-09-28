@@ -11,7 +11,7 @@
     "svd_path": "cc1310f128.svd",
     "jlink_device": "CC1310F128",
     "openocd_chipname": "cc1310f128",
-    "openocd_target": "ti_cc13x0_launchpad",
+    "openocd_target": "ti_cc13x0",
     "onboard_tools": [
       "xds110"
     ]
