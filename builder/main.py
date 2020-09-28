@@ -200,13 +200,13 @@ if upload_protocol.startswith("jlink"):
     )
     upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
 
-#elif upload_protocol.startswith("cc2538-bsl"):
-#    env.Replace(
-#	UPLOADER=join(platform.get_package_dir("tool-cc2538bslpy") or "", "cc2538-bsl.py"),
-#        UPLOADERFLAGS=["-e", "-w", "-v", "{$SOURCE}"],
-#        UPLOADERCMD='"$UPLOADER" $UPLOADERFLAGS')
-#
-#    upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
+elif upload_protocol.startswith("dslite"):
+    env.Replace(
+	UPLOADER=join(platform.get_package_dir("tool-dslite") or "", "DSLite", "DebugServer", "bin", "DSLite.exe" if system() == "Windows" else "DSLite"),
+        UPLOADERFLAGS=["load", "-c", join("DSLite", env.BoardConfig().get("build.variant"), ".ccxml"), "-f", "{$SOURCE}"],
+        UPLOADERCMD='"$UPLOADER" $UPLOADERFLAGS')
+
+    upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
 
 elif upload_protocol in debug_tools:
 
@@ -239,7 +239,7 @@ elif upload_protocol == "custom":
 else:
     sys.stderr.write("Warning! Unknown upload protocol %s\n" % upload_protocol)
 
-AlwaysBuild(env.Alias("upload", target_firm, upload_actions))
+AlwaysBuild(env.Alias("upload", target_elf, upload_actions))
 
 #
 # Target: Default targets
