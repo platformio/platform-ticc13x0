@@ -10,13 +10,13 @@ install:
   - pip install -U https://github.com/platformio/platformio-core/archive/develop.zip
   - platformio --version
   - mkdir -p ~/.platformio/packages
-  - wget https://downloads.ti.com/ccs/esd/tirex/zips/energia_cc13xx_5.20.0/energia_cc13xx_5.20.0__linux.zip
+  #- wget https://downloads.ti.com/ccs/esd/tirex/zips/energia_cc13xx_5.20.0/energia_cc13xx_5.20.0__linux.zip
   - wget https://github.com/JelmerT/cc2538-bsl/archive/master.zip -O cc2538-bsl-master.zip
-  - unzip energia_cc13xx_5.20.0__linux.zip -d ~/.platformio/packages/
+  #- unzip energia_cc13xx_5.20.0__linux.zip -d ~/.platformio/packages/
   - unzip cc2538-bsl-master.zip -d ~/.platformio/packages/
-  - mv ~/.platformio/packages/energia_cc13xx_5.20.0 ~/.platformio/packages/framework-energia-ticc13x0
+  #- mv ~/.platformio/packages/energia_cc13xx_5.20.0 ~/.platformio/packages/framework-energia-ticc13x0
   - mv ~/.platformio/packages/cc2538-bsl-master ~/.platformio/packages/tool-cc2538bslpy
-  - cp ./misc/framework-energia-ticc13x0/package.json ~/.platformio/packages/framework-energia-ticc13x0
+  #- cp ./misc/framework-energia-ticc13x0/package.json ~/.platformio/packages/framework-energia-ticc13x0
   - cp ./misc/tool-cc2538bslpy/package.json ~/.platformio/packages/tool-cc2538bslpy
   - ls -lh ~/.platformio/packages/
   - platformio platform install file://.
