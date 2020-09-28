@@ -51,11 +51,6 @@
       "optional": true,
       "owner": "platformio",
       "version": "^1.63208.0"
-    },
-   "tool-cc2538bslpy": {
-      "type": "uploader",
-      "optional": true,
-      "version": "^1.201.0"
     }
   }
 }
