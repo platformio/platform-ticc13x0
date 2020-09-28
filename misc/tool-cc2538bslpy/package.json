@@ -1,6 +1,0 @@
-{
-  "description": "TI CC13xx/CC2538/CC26xx serial bootloader utility",
-  "name": "tool-cc2538bslpy",
-  "url": "https://github.com/JelmerT/cc2538-bsl",
-  "version": "1.201.0"
-}

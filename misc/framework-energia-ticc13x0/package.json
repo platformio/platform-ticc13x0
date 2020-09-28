@@ -1,7 +1,0 @@
-{
-    "description": "Energia Wiring-based Framework (CC13x0)",
-    "name": "framework-energia-ticc13x0",
-    "system": "*",
-    "url": "http://energia.nu/reference/",
-    "version": "1.0.5200"
-}

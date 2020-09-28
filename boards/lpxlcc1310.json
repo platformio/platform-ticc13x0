@@ -23,11 +23,10 @@
   "upload": {
     "maximum_ram_size": 20480,
     "maximum_size": 131072,
-    "protocol": "cc2538-bsl",
+    "protocol": "xds110",
     "protocols": [
       "jlink",
-      "xds110",
-      "cc2538-bsl"
+      "xds110"
     ]
   },
   "url": "https://www.ti.com/store/ti/en/p/product/?p=LAUNCHXL-CC1310",
